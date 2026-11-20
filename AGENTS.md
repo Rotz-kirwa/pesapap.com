@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project architecture
+
+- Keep each public customer-facing page in its own TanStack route file, with a shared Pesa Pap shell and reusable page elements under `src/components/pesapap/`; this keeps navigation consistent while allowing the five pages to evolve independently.
+- Keep demonstration lending values and contact placeholders in one frontend configuration module, separate from any application-state or assessment logic; this makes sample terms easy to identify and prevents them from being mistaken for live lending decisions.
