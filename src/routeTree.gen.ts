@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EligibilityRouteImport } from './routes/eligibility'
+import { Route as LoanNowRouteImport } from './routes/loan-now'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EligibilityRoute = EligibilityRouteImport.update({
+  id: '/eligibility',
+  path: '/eligibility',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoanNowRoute = LoanNowRouteImport.update({
+  id: '/loan-now',
+  path: '/loan-now',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/eligibility': typeof EligibilityRoute
+  '/loan-now': typeof LoanNowRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/eligibility': typeof EligibilityRoute
+  '/loan-now': typeof LoanNowRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/eligibility': typeof EligibilityRoute
+  '/loan-now': typeof LoanNowRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/eligibility' | '/loan-now'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/eligibility' | '/loan-now'
+  id: '__root__' | '/' | '/eligibility' | '/loan-now'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EligibilityRoute: typeof EligibilityRoute
+  LoanNowRoute: typeof LoanNowRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/eligibility': {
+      id: '/eligibility'
+      path: '/eligibility'
+      fullPath: '/eligibility'
+      preLoaderRoute: typeof EligibilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/loan-now': {
+      id: '/loan-now'
+      path: '/loan-now'
+      fullPath: '/loan-now'
+      preLoaderRoute: typeof LoanNowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EligibilityRoute: EligibilityRoute,
+  LoanNowRoute: LoanNowRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
