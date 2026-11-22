@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  ArrowUpRight,
   BadgeCheck,
   BriefcaseBusiness,
   Check,
   ClipboardCheck,
   Clock3,
+  FileText,
   HandCoins,
   HeartHandshake,
   Leaf,

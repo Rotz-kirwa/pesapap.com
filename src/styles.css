@@ -198,10 +198,6 @@
   animation: float-soft 5s ease-in-out infinite;
 }
 
-@utility text-balance {
-  text-wrap: balance;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

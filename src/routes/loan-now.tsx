@@ -5,7 +5,6 @@ import { ArrowLeft, ArrowRight, CheckCircle2, CircleDollarSign, ClipboardList, S
 import { CTAButton, DemoNotice, Field, PageIntro, SelectField, SiteShell, TextField } from "@/components/pesapap/site";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { APPLICATION_DEMO_STATES, APP_FEE_KES, estimateRepayment, formatKes, isKenyanMobileNumber, LOAN_CALCULATOR, SAMPLE_MONTHLY_RATE_PERCENT } from "@/lib/pesapap-config";

@@ -6,7 +6,6 @@ import { CTAButton, DemoNotice, PageIntro, SelectField, SiteShell, TextField } f
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ELIGIBILITY_DEMO_STATES, isKenyanMobileNumber } from "@/lib/pesapap-config";
 
 export const Route = createFileRoute("/eligibility")({
@@ -62,6 +61,7 @@ function EligibilityPage() {
       setNationalId("");
       setPhone("");
       setEmail("");
+      setConsent(false);
       setSubmitted(true);
       setLoading(false);
     }, 550);
@@ -79,7 +79,7 @@ function EligibilityPage() {
         <div>
           <DemoNotice>Demonstration only. Please use sample details—not real identity information. This form does not send or save your data and cannot assess creditworthiness.</DemoNotice>
           {!submitted ? (
-            <form onSubmit={handleSubmit} className="mt-8 border border-brand-line bg-background p-5 sm:p-8" noValidate>
+            <form onSubmit={handleSubmit} className="mt-8 border border-brand-line bg-background p-5 sm:p-8">
               <div className="flex items-start justify-between gap-4 border-b border-brand-line pb-5">
                 <div><h2 className="text-xl font-bold text-brand-forest">Your basic details</h2><p className="mt-1 text-sm text-muted-foreground">Fields marked * are required.</p></div>
                 <span className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-sky text-brand-blue"><LockKeyhole aria-hidden="true" className="size-5" /></span>

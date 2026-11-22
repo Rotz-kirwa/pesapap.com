@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useState, type ComponentProps, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -164,8 +164,8 @@ function SiteFooter() {
           <h2 className="text-sm font-bold">Support</h2>
           <ul className="mt-4 space-y-3 text-sm text-primary-foreground/75">
             <li><Link to="/contact" className="transition-colors hover:text-primary-foreground">Contact us</Link></li>
-            <li><Link to="/contact#privacy" className="transition-colors hover:text-primary-foreground">Privacy notice</Link></li>
-            <li><Link to="/contact#terms" className="transition-colors hover:text-primary-foreground">Loan disclosure</Link></li>
+            <li><Link to="/contact" hash="privacy" className="transition-colors hover:text-primary-foreground">Privacy notice</Link></li>
+            <li><Link to="/contact" hash="terms" className="transition-colors hover:text-primary-foreground">Loan disclosure</Link></li>
             <li><span>Support channels: {CONTACT_PLACEHOLDERS.email}</span></li>
           </ul>
         </div>
@@ -290,9 +290,9 @@ export function TextField({
   required = false,
   hint,
   ...props
-}: React.ComponentProps<typeof Input> & { id: string; label: string; hint?: string }) {
+}: ComponentProps<typeof Input> & { id: string; label: string; hint?: string }) {
   return (
-    <Field id={id} label={label} required={required} hint={hint}>
+    <Field id={id} label={label} required={required} {...(hint === undefined ? {} : { hint })}>
       <Input id={id} required={required} className="h-12 rounded-md border-brand-line bg-background px-4" {...props} />
     </Field>
   );
@@ -314,7 +314,7 @@ export function SelectField({
   hint?: string;
 }) {
   return (
-    <Field id={id} label={label} hint={hint}>
+    <Field id={id} label={label} {...(hint === undefined ? {} : { hint })}>
       <Select value={value} onValueChange={onValueChange}>
         <SelectTrigger id={id} className="h-12 rounded-md border-brand-line bg-background px-4">
           <SelectValue />
@@ -350,6 +350,7 @@ export function DemoStoryCard({
       </div>
       <div className="p-5">
         <p className="text-sm leading-6 text-muted-foreground">“{quote}”</p>
+        <p className="mt-3 inline-flex items-center gap-1 text-xs text-brand-orange"><span aria-hidden="true">★★★★★</span><span className="text-muted-foreground">illustrative, not a rating</span></p>
         <div className="mt-5 border-t border-brand-line pt-4">
           <p className="font-bold text-foreground">{name}</p>
           <p className="mt-1 text-xs text-muted-foreground">{role} · illustrative profile</p>
