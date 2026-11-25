@@ -1,14 +1,6 @@
 import { useState, type FormEvent, type ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  CheckCircle2,
-  Clock3,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Phone,
-  ShieldCheck,
-} from "lucide-react";
+import { CheckCircle2, Clock3, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { Field, PageIntro, SelectField, SiteShell, TextField } from "@/components/pesapap/site";
 import { Button } from "@/components/ui/button";
@@ -290,30 +282,6 @@ function ContactPage() {
               terms in the lender's written offer before accepting.
             </FAQ>
           </div>
-          <div className="mt-10 grid gap-6 border-t border-brand-line pt-8 md:grid-cols-2">
-            <section id="privacy" className="scroll-mt-24">
-              <h3 className="flex items-center gap-2 font-bold text-brand-forest">
-                <ShieldCheck aria-hidden="true" className="size-4" /> Privacy notice
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                This prototype keeps form entries in temporary page state only and does not transmit
-                or save them. A real service needs an approved privacy notice and secure data
-                handling.
-              </p>
-            </section>
-            <section id="terms" className="scroll-mt-24">
-              <h3 className="flex items-center gap-2 font-bold text-brand-forest">
-                <ShieldCheck aria-hidden="true" className="size-4" /> Loan disclosure
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                Approval, amount, interest, fees and repayment terms depend on an actual assessment
-                and published lending terms. No sample shown here represents an offer.
-              </p>
-            </section>
-          </div>
-          <p className="mt-8 border-t border-brand-line pt-6 text-xs text-muted-foreground">
-            Social media channels are not configured.
-          </p>
         </div>
       </section>
     </SiteShell>
