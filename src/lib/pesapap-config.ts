@@ -79,12 +79,18 @@ export const ELIGIBILITY_PRECHECK_TIERS = [
 
 export type EligibilityPrecheckTierName = (typeof ELIGIBILITY_PRECHECK_TIERS)[number]["name"];
 
-export const CONTACT_PLACEHOLDERS = {
-  phone: "Not configured",
-  email: "Not configured",
-  address: "Not configured",
-  hours: "Not configured",
-  whatsapp: "Not configured",
+export const CONTACT_DETAILS = {
+  phone: "0799646499",
+  phoneHref: "tel:+254799646499",
+  email: "info@pesapap.com",
+  emailHref: "mailto:info@pesapap.com",
+  address: "The Mall, Westlands, Nairobi, 4th Floor",
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=The+Mall%2C+Westlands%2C+Nairobi",
+  mapEmbedUrl:
+    "https://www.openstreetmap.org/export/embed.html?bbox=36.7948%2C-1.2695%2C36.8108%2C-1.2595&layer=mapnik&marker=-1.2645047%2C36.8027901",
+  hours: "24/7",
+  whatsapp: "0799646499",
+  whatsappHref: "https://wa.me/254799646499",
 } as const;
 
 export const APPLICATION_WORKFLOW_STATUSES = [

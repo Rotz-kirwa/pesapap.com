@@ -20,7 +20,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { DEMO_DISBURSEMENT_ACTIVITY } from "@/lib/disbursement-activity";
-import { CONTACT_PLACEHOLDERS, formatKes } from "@/lib/pesapap-config";
+import { CONTACT_DETAILS, formatKes } from "@/lib/pesapap-config";
 
 export type PesaPapPath = "/" | "/eligibility" | "/loan-now" | "/testimonials" | "/contact";
 
@@ -403,7 +403,9 @@ function SiteFooter() {
               </Link>
             </li>
             <li>
-              <span>Support channels: {CONTACT_PLACEHOLDERS.email}</span>
+              <span>
+                Support: {CONTACT_DETAILS.phone} · {CONTACT_DETAILS.email}
+              </span>
             </li>
           </ul>
         </div>

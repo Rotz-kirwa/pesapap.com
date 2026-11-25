@@ -10,17 +10,10 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-import {
-  DemoNotice,
-  Field,
-  PageIntro,
-  SelectField,
-  SiteShell,
-  TextField,
-} from "@/components/pesapap/site";
+import { Field, PageIntro, SelectField, SiteShell, TextField } from "@/components/pesapap/site";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { CONTACT_PLACEHOLDERS, isKenyanMobileNumber } from "@/lib/pesapap-config";
+import { CONTACT_DETAILS, isKenyanMobileNumber } from "@/lib/pesapap-config";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -29,7 +22,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Find Pesa Pap support information and preview a contact form. Support channels are not yet configured.",
+          "Contact Pesa Pap by phone, email, or WhatsApp, or visit our office in Westlands, Nairobi.",
       },
       { property: "og:title", content: "Contact Us | Pesa Pap" },
       {
@@ -104,55 +97,66 @@ function ContactPage() {
               Reach out when you have a question.
             </h2>
             <p className="mt-4 max-w-lg text-sm leading-6 text-muted-foreground">
-              Support contact details will be published here once the channels are ready. No real
-              phone number, office or working hours have been supplied yet.
+              Call, email, or WhatsApp us, or visit our office at The Mall in Westlands. Support is
+              available 24/7.
             </p>
 
             <div className="mt-8 grid gap-0 sm:grid-cols-2">
               <ContactInfo
                 icon={<Phone aria-hidden="true" className="size-5" />}
                 label="Phone"
-                value={CONTACT_PLACEHOLDERS.phone}
+                value={CONTACT_DETAILS.phone}
+                href={CONTACT_DETAILS.phoneHref}
               />
               <ContactInfo
                 icon={<Mail aria-hidden="true" className="size-5" />}
                 label="Email"
-                value={CONTACT_PLACEHOLDERS.email}
+                value={CONTACT_DETAILS.email}
+                href={CONTACT_DETAILS.emailHref}
               />
               <ContactInfo
                 icon={<MapPin aria-hidden="true" className="size-5" />}
                 label="Office address"
-                value={CONTACT_PLACEHOLDERS.address}
+                value={CONTACT_DETAILS.address}
+                href={CONTACT_DETAILS.mapUrl}
+                targetBlank
               />
               <ContactInfo
                 icon={<Clock3 aria-hidden="true" className="size-5" />}
                 label="Working hours"
-                value={CONTACT_PLACEHOLDERS.hours}
+                value={CONTACT_DETAILS.hours}
               />
               <ContactInfo
                 icon={<MessageCircle aria-hidden="true" className="size-5" />}
                 label="WhatsApp support"
-                value={CONTACT_PLACEHOLDERS.whatsapp}
+                value={CONTACT_DETAILS.whatsapp}
+                href={CONTACT_DETAILS.whatsappHref}
+                targetBlank
               />
             </div>
 
-            <div
-              className="mt-8 flex aspect-[16/8] flex-col items-center justify-center border border-dashed border-brand-blue/35 bg-brand-sky p-5 text-center"
-              aria-label="Office location map placeholder"
-            >
-              <MapPin aria-hidden="true" className="size-7 text-brand-blue" />
-              <p className="mt-3 font-bold text-brand-blue">Office location not configured</p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                A map will appear here once a verified address is available.
-              </p>
+            <div className="mt-8 overflow-hidden border border-brand-line bg-background">
+              <iframe
+                title="Map to The Mall, Westlands, Nairobi"
+                src={CONTACT_DETAILS.mapEmbedUrl}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-64 w-full border-0"
+              />
+              <div className="border-t border-brand-line px-4 py-3">
+                <a
+                  href={CONTACT_DETAILS.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-semibold text-brand-blue underline underline-offset-4"
+                >
+                  Open in Google Maps
+                </a>
+              </div>
             </div>
           </div>
 
           <div>
-            <DemoNotice>
-              Sandbox preview: This contact form runs locally for evaluation and does not transmit
-              or store messages externally.
-            </DemoNotice>
             {!submitted ? (
               <form
                 onSubmit={handleSubmit}
@@ -272,20 +276,18 @@ function ContactPage() {
             A few helpful answers.
           </h2>
           <div className="mt-7 grid gap-x-10 md:grid-cols-2">
-            <FAQ title="Does checking eligibility guarantee a loan?">
-              No. Any real eligibility assessment and lending decision depends on the lender's
-              actual criteria and published terms. This website is only a demonstration.
+            <FAQ title="What loan terms should I review?">
+              Before accepting, review the loan amount, interest rate, fees, total repayable, and
+              repayment schedule. Figures shown here are indicative; your final offer sets your
+              terms.
             </FAQ>
-            <FAQ title="Are the loan amounts and rates live offers?">
-              No. Amounts and rates shown in this prototype are sample values and are not a quote,
-              approval or offer.
+            <FAQ title="What repayment periods are available?">
+              Indicative periods vary by product: Personal Support is 14–30 days, Business Working
+              Capital is 30–90 days, and Seasonal Opportunity is 60–90 days.
             </FAQ>
-            <FAQ title="Can I pay the application fee here?">
-              No. No payment service is connected and no fee is collected on this website.
-            </FAQ>
-            <FAQ title="How do I reach customer support?">
-              Phone, email, WhatsApp, office address and working hours are marked as not configured
-              until verified contact details are supplied.
+            <FAQ title="Are the displayed rates and terms final?">
+              No. The rate, fees, and repayment schedule shown are illustrative. Confirm your exact
+              terms in the lender's written offer before accepting.
             </FAQ>
           </div>
           <div className="mt-10 grid gap-6 border-t border-brand-line pt-8 md:grid-cols-2">
@@ -318,7 +320,19 @@ function ContactPage() {
   );
 }
 
-function ContactInfo({ icon, label, value }: { icon: ReactNode; label: string; value: string }) {
+function ContactInfo({
+  icon,
+  label,
+  value,
+  href,
+  targetBlank = false,
+}: {
+  icon: ReactNode;
+  label: string;
+  value: string;
+  href?: string;
+  targetBlank?: boolean;
+}) {
   return (
     <div className="flex items-start gap-3 border-b border-brand-line py-4 sm:pr-4">
       <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-mint text-brand-forest">
@@ -326,7 +340,18 @@ function ContactInfo({ icon, label, value }: { icon: ReactNode; label: string; v
       </span>
       <div>
         <h3 className="text-sm font-bold text-foreground">{label}</h3>
-        <p className="mt-1 text-sm text-muted-foreground">{value}</p>
+        {href ? (
+          <a
+            href={href}
+            target={targetBlank ? "_blank" : undefined}
+            rel={targetBlank ? "noopener noreferrer" : undefined}
+            className="mt-1 inline-block text-sm text-muted-foreground underline underline-offset-4"
+          >
+            {value}
+          </a>
+        ) : (
+          <p className="mt-1 text-sm text-muted-foreground">{value}</p>
+        )}
       </div>
     </div>
   );
