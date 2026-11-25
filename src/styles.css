@@ -198,7 +198,100 @@
   animation: float-soft 5s ease-in-out infinite;
 }
 
+@keyframes money-into-home {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 4px, 0) scale(0.75) rotate(-8deg);
+  }
+  18% {
+    opacity: 1;
+    transform: translate3d(28px, -5px, 0) scale(1) rotate(-2deg);
+  }
+  65% {
+    opacity: 1;
+    transform: translate3d(96px, -6px, 0) scale(1.03) rotate(5deg);
+  }
+  88% {
+    opacity: 0.75;
+    transform: translate3d(134px, 0, 0) scale(0.65) rotate(2deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(148px, 1px, 0) scale(0.4) rotate(0deg);
+  }
+}
+
+@keyframes money-drop-home {
+  0% {
+    opacity: 0;
+    transform: translate3d(-16px, -24px, 0) scale(0.75) rotate(-12deg);
+  }
+  25% {
+    opacity: 1;
+    transform: translate3d(-5px, -14px, 0) scale(1) rotate(-3deg);
+  }
+  75% {
+    opacity: 0.95;
+    transform: translate3d(2px, -2px, 0) scale(0.85) rotate(5deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(5px, 6px, 0) scale(0.4) rotate(8deg);
+  }
+}
+
+@keyframes home-receive-pulse {
+  0% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(1.48);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.48);
+  }
+}
+
+@utility money-into-home {
+  animation: money-into-home 4.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@utility money-drop-home {
+  animation: money-drop-home 3.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@utility home-receive-pulse {
+  animation: home-receive-pulse 2.4s ease-out infinite;
+}
+
+@keyframes marquee-rtl {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@utility marquee-rtl {
+  animation: marquee-rtl var(--marquee-duration, 9999s) linear infinite;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .marquee-rtl:hover {
+    animation-play-state: paused;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .marquee-rtl {
+    animation: none !important;
+  }
+
   *,
   *::before,
   *::after {

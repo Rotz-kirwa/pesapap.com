@@ -84,13 +84,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Pesa Pap | Simple, transparent lending" },
       {
         name: "description",
-        content: "Explore a clear, convenient lending experience designed for your next financial move.",
+        content:
+          "Explore a clear, convenient lending experience designed for your next financial move.",
       },
-      { name: "author", content: "Lovable" },
+      { name: "author", content: "Pesa Pap" },
       { property: "og:title", content: "Pesa Pap | Simple, transparent lending" },
       {
         property: "og:description",
-        content: "Explore a clear, convenient lending experience designed for your next financial move.",
+        content:
+          "Explore a clear, convenient lending experience designed for your next financial move.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -106,7 +108,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.webp?v=2", type: "image/webp" },
+      { rel: "icon", href: "/favicon.ico?v=2", type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,
