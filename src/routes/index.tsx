@@ -17,14 +17,14 @@ import {
 
 import {
   CTAButton,
+  CustomerStoryCard,
   DemoNotice,
-  DemoStoryCard,
   IconFeature,
   SectionHeading,
   SiteShell,
   StepTile,
 } from "@/components/pesapap/site";
-import { DEMO_STORIES } from "@/lib/demo-stories";
+import { CUSTOMER_STORIES } from "@/lib/customer-stories";
 import {
   DEMO_PRODUCTS,
   formatKes,
@@ -394,26 +394,26 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-brand-line bg-brand-sky">
+      <section
+        aria-labelledby="testimonials-heading"
+        className="border-y border-brand-line bg-brand-sky"
+      >
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <SectionHeading
-              eyebrow="Lending use cases"
-              title="A few ways people plan their next step."
-              description="Illustrative scenarios showing common business, agricultural, and household financing goals."
-            />
-            <CTAButton to="/testimonials" variant="outlineBrand" size="lg" className="h-12 px-5">
-              Explore all use cases
-            </CTAButton>
-          </div>
-          <p className="mt-6 inline-flex items-center gap-2 text-xs font-semibold text-brand-blue">
-            <ShieldCheck aria-hidden="true" className="size-4" /> Illustrative scenarios — not
-            individual customer endorsements.
-          </p>
+          <h2
+            id="testimonials-heading"
+            className="font-display text-3xl font-bold text-brand-forest sm:text-4xl"
+          >
+            Testimonials
+          </h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {DEMO_STORIES.slice(0, 3).map((story) => (
-              <DemoStoryCard key={story.name} {...story} />
+            {CUSTOMER_STORIES.slice(0, 3).map((story) => (
+              <CustomerStoryCard key={story.name} {...story} />
             ))}
+          </div>
+          <div className="mt-8 flex justify-center">
+            <CTAButton to="/testimonials" variant="outlineBrand" size="lg" className="h-12 px-5">
+              See more stories
+            </CTAButton>
           </div>
         </div>
       </section>

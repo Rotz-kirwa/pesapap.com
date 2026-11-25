@@ -371,7 +371,7 @@ function SiteFooter() {
             </li>
             <li>
               <Link to="/testimonials" className="transition-colors hover:text-primary-foreground">
-                Use cases
+                Customer stories
               </Link>
             </li>
           </ul>
@@ -596,16 +596,18 @@ export function SelectField({
   );
 }
 
-export function DemoStoryCard({
+export function CustomerStoryCard({
   name,
   role,
-  quote,
+  title,
+  story,
   image,
   imageAlt,
 }: {
   name: string;
   role: string;
-  quote: string;
+  title: string;
+  story: string;
   image: string;
   imageAlt: string;
 }) {
@@ -614,14 +616,15 @@ export function DemoStoryCard({
       <div className="relative aspect-[4/3] overflow-hidden bg-brand-mint">
         <img src={image} alt={imageAlt} loading="lazy" className="h-full w-full object-cover" />
         <span className="absolute left-3 top-3 bg-background/95 px-2.5 py-1 text-[0.65rem] font-bold uppercase text-brand-forest">
-          Use case
+          Customer story
         </span>
       </div>
       <div className="p-5">
-        <p className="text-sm leading-6 text-muted-foreground">“{quote}”</p>
+        <h3 className="font-bold text-foreground">{title}</h3>
+        <p className="mt-2 text-sm leading-6 text-muted-foreground">{story}</p>
         <div className="mt-5 border-t border-brand-line pt-4">
           <p className="font-bold text-foreground">{name}</p>
-          <p className="mt-1 text-xs text-muted-foreground">{role} · illustrative scenario</p>
+          <p className="mt-1 text-xs text-muted-foreground">{role}</p>
         </div>
       </div>
     </article>

@@ -224,10 +224,6 @@ function LoanNowPage() {
             >
               Submit preliminary request <ArrowRight aria-hidden="true" />
             </Button>
-            <p className="mt-3 text-xs leading-5 text-muted-foreground">
-              No payment is collected at this stage. A preliminary request is not an approval; a
-              full application and verification are required for an affordability assessment.
-            </p>
           </form>
         )}
       </section>

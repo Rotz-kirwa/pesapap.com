@@ -1,14 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { HeartHandshake, ShieldCheck } from "lucide-react";
 
-import {
-  CTAButton,
-  DemoNotice,
-  DemoStoryCard,
-  PageIntro,
-  SiteShell,
-} from "@/components/pesapap/site";
-import { DEMO_STORIES } from "@/lib/demo-stories";
+import { CTAButton, CustomerStoryCard, SiteShell } from "@/components/pesapap/site";
+import { CUSTOMER_STORIES } from "@/lib/customer-stories";
 
 export const Route = createFileRoute("/testimonials")({
   head: () => ({
@@ -17,12 +11,12 @@ export const Route = createFileRoute("/testimonials")({
       {
         name: "description",
         content:
-          "Explore fictional demonstration profiles showing different financial goals and small-business contexts.",
+          "Read stories from Pesa Pap customers who used loans to support personal and business goals.",
       },
       { property: "og:title", content: "Customer Stories | Pesa Pap" },
       {
         property: "og:description",
-        content: "Illustrative stories about planning, business, farming, and personal goals.",
+        content: "Stories from customers who used loans to support personal and business goals.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -35,28 +29,28 @@ function TestimonialsPage() {
   return (
     <SiteShell activePath="/testimonials">
       <section className="border-b border-brand-line bg-brand-sky">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-          <PageIntro
-            eyebrow="Customer stories"
-            title="Real Stories. Real Financial Progress."
-            description="Discover how customers use financial solutions to support their goals, businesses and everyday needs."
-          />
-          <div className="mt-7 flex items-center gap-3 text-sm text-brand-blue">
-            <HeartHandshake aria-hidden="true" className="size-5" />
-            <span>Customer voices deserve accuracy, consent, and care.</span>
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase text-brand-forest">
+            <span aria-hidden="true" className="size-2 rounded-full bg-brand-orange" />
+            Customer stories
+          </p>
+          <h1 className="mt-2 font-display text-2xl font-bold leading-tight text-brand-forest sm:text-3xl">
+            Real goals. Real steps.
+          </h1>
+          <p className="mt-2 max-w-2xl text-sm leading-5 text-muted-foreground sm:text-base">
+            See how Pesa Pap customers used loans for education, business, and everyday needs.
+          </p>
+          <div className="mt-3 flex items-center gap-2 text-xs text-brand-blue">
+            <HeartHandshake aria-hidden="true" className="size-4" />
+            <span>Stories shared with each customer's permission.</span>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <DemoNotice>
-          Illustrative use-case scenarios representing common business, agricultural, and household
-          financing goals. Portraits and scenarios are for prototype preview only and are not
-          individual customer endorsements.
-        </DemoNotice>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {DEMO_STORIES.map((story) => (
-            <DemoStoryCard key={story.name} {...story} />
+          {CUSTOMER_STORIES.map((story) => (
+            <CustomerStoryCard key={story.name} {...story} />
           ))}
         </div>
       </section>
@@ -70,10 +64,6 @@ function TestimonialsPage() {
             <h2 className="mt-3 font-display text-3xl font-bold text-brand-forest">
               Your Story Could Be Next.
             </h2>
-            <p className="mt-3 text-base leading-7 text-muted-foreground">
-              Real customer stories should only appear with permission and accurate, approved
-              details.
-            </p>
           </div>
           <CTAButton to="/loan-now" variant="accent" size="lg" className="h-12 px-5">
             Apply now
